@@ -4,12 +4,14 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import com.example.lemonade.ui.theme.LemonadeTheme
 
@@ -34,7 +36,10 @@ private fun Lemonade(
     Column(
         modifier = modifier
     ) {
-
+        Image(
+            painter = painterResource(R.drawable.lemon_tree),
+            contentDescription = "1"
+        )
     }
 }
 
