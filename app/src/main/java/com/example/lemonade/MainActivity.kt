@@ -14,9 +14,13 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.CenterAlignedTopAppBar
+import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
+import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -43,107 +47,124 @@ class MainActivity : ComponentActivity() {
     }
 }
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 private fun Lemonade() {
-    Surface (
-        modifier = Modifier
-            .fillMaxSize()
-            .wrapContentSize(Alignment.Center),
-        color = MaterialTheme.colorScheme.background
-    ) {
-        var currentStep by remember { mutableStateOf(R.string.lemon_tree) }
+    Scaffold(
+        topBar = {
+            CenterAlignedTopAppBar(
+                title = {
+                    Text(
+                        text = "Lemonade"
+                    )
+                },
+                colors = TopAppBarDefaults.largeTopAppBarColors(
+                    containerColor = Color.Yellow
+                )
+            )
+        }
+    ) { innerPadding ->
 
-        Column(
-            horizontalAlignment = Alignment.CenterHorizontally
+        Surface (
+            modifier = Modifier
+                .fillMaxSize()
+                .wrapContentSize(Alignment.Center),
+            color = MaterialTheme.colorScheme.background
         ) {
-            when (currentStep) {
+            var currentStep by remember { mutableStateOf(R.string.lemon_tree) }
 
-                R.string.lemon_tree -> {
-                    Image(
-                        painter = painterResource(R.drawable.lemon_tree),
-                        contentDescription = stringResource(R.string.lemon_tree),
-                        modifier = Modifier
-                            .clickable {
-                                currentStep = R.string.lemon
-                            }
-                            .background(Color(0xFFBEEBBE), RoundedCornerShape(20.dp))
-                            .width(200.dp)
-                            .height(200.dp)
-                    )
+            Column(
+                horizontalAlignment = Alignment.CenterHorizontally
+            ) {
+                when (currentStep) {
 
-                    Spacer(
-                        modifier = Modifier.height(20.dp)
-                    )
+                    R.string.lemon_tree -> {
+                        Image(
+                            painter = painterResource(R.drawable.lemon_tree),
+                            contentDescription = stringResource(R.string.lemon_tree),
+                            modifier = Modifier
+                                .clickable {
+                                    currentStep = R.string.lemon
+                                }
+                                .background(Color(0xFFBEEBBE), RoundedCornerShape(20.dp))
+                                .width(200.dp)
+                                .height(200.dp)
+                        )
 
-                    Text (
-                        text = stringResource(R.string.lemon_tree_text)
-                    )
-                }
+                        Spacer(
+                            modifier = Modifier.height(20.dp)
+                        )
 
-                R.string.lemon -> {
-                    Image(
-                        painter = painterResource(R.drawable.lemon_squeeze),
-                        contentDescription = stringResource(R.string.lemon),
-                        modifier = Modifier
-                            .clickable {
-                                currentStep = R.string.glass_of_lemonade
-                            }
-                            .background(Color(0xFFBEEBBE), RoundedCornerShape(20.dp))
-                            .width(200.dp)
-                            .height(200.dp)
-                    )
+                        Text (
+                            text = stringResource(R.string.lemon_tree_text)
+                        )
+                    }
 
-                    Spacer(
-                        modifier = Modifier.height(20.dp)
-                    )
+                    R.string.lemon -> {
+                        Image(
+                            painter = painterResource(R.drawable.lemon_squeeze),
+                            contentDescription = stringResource(R.string.lemon),
+                            modifier = Modifier
+                                .clickable {
+                                    currentStep = R.string.glass_of_lemonade
+                                }
+                                .background(Color(0xFFBEEBBE), RoundedCornerShape(20.dp))
+                                .width(200.dp)
+                                .height(200.dp)
+                        )
 
-                    Text (
-                        text = stringResource(R.string.lemon_text)
-                    )
-                }
+                        Spacer(
+                            modifier = Modifier.height(20.dp)
+                        )
 
-                R.string.glass_of_lemonade -> {
-                    Image(
-                        painter = painterResource(R.drawable.lemon_drink),
-                        contentDescription = stringResource(R.string.glass_of_lemonade),
-                        modifier = Modifier
-                            .clickable {
-                                currentStep = R.string.empty_glass
-                            }
-                            .background(Color(0xFFBEEBBE), RoundedCornerShape(20.dp))
-                            .width(200.dp)
-                            .height(200.dp)
-                    )
+                        Text (
+                            text = stringResource(R.string.lemon_text)
+                        )
+                    }
 
-                    Spacer(
-                        modifier = Modifier.height(20.dp)
-                    )
+                    R.string.glass_of_lemonade -> {
+                        Image(
+                            painter = painterResource(R.drawable.lemon_drink),
+                            contentDescription = stringResource(R.string.glass_of_lemonade),
+                            modifier = Modifier
+                                .clickable {
+                                    currentStep = R.string.empty_glass
+                                }
+                                .background(Color(0xFFBEEBBE), RoundedCornerShape(20.dp))
+                                .width(200.dp)
+                                .height(200.dp)
+                        )
 
-                    Text (
-                        text = stringResource(R.string.glass_of_lemonade_text)
-                    )
-                }
+                        Spacer(
+                            modifier = Modifier.height(20.dp)
+                        )
 
-                R.string.empty_glass -> {
-                    Image(
-                        painter = painterResource(R.drawable.lemon_restart),
-                        contentDescription = stringResource(R.string.empty_glass),
-                        modifier = Modifier
-                            .clickable {
-                                currentStep = R.string.lemon_tree
-                            }
-                            .background(Color(0xFFBEEBBE), RoundedCornerShape(20.dp))
-                            .width(200.dp)
-                            .height(200.dp)
-                    )
+                        Text (
+                            text = stringResource(R.string.glass_of_lemonade_text)
+                        )
+                    }
 
-                    Spacer(
-                        modifier = Modifier.height(20.dp)
-                    )
+                    R.string.empty_glass -> {
+                        Image(
+                            painter = painterResource(R.drawable.lemon_restart),
+                            contentDescription = stringResource(R.string.empty_glass),
+                            modifier = Modifier
+                                .clickable {
+                                    currentStep = R.string.lemon_tree
+                                }
+                                .background(Color(0xFFBEEBBE), RoundedCornerShape(20.dp))
+                                .width(200.dp)
+                                .height(200.dp)
+                        )
 
-                    Text (
-                        text = stringResource(R.string.empty_glass_text)
-                    )
+                        Spacer(
+                            modifier = Modifier.height(20.dp)
+                        )
+
+                        Text (
+                            text = stringResource(R.string.empty_glass_text)
+                        )
+                    }
                 }
             }
         }
