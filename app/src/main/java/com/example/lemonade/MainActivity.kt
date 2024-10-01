@@ -59,7 +59,7 @@ private fun Lemonade() {
                     )
                 },
                 colors = TopAppBarDefaults.largeTopAppBarColors(
-                    containerColor = Color.Yellow
+                    containerColor = Color(0xFFF1E27A)
                 )
             )
         }
